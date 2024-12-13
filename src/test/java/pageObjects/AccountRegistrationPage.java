@@ -5,64 +5,94 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AccountRegistrationPage extends BasePage{
-    public AccountRegistrationPage(WebDriver driver){
+public class AccountRegistrationPage extends BasePage {
+
+    public AccountRegistrationPage(WebDriver driver) {
         super(driver);
     }
-    @FindBy(xpath = "//input[@id='input-firstname']")
+
+    // Elements
+    @FindBy(name = "firstname")
     WebElement txtFirstname;
 
-    @FindBy(xpath = "//input[@id='input-lastname']")
-    WebElement txtLastname;
+    @FindBy(name = "lastname")
+    WebElement txtLasttname;
 
-    @FindBy(xpath = "//input[@id='input-email']")
+    @FindBy(name = "email")
     WebElement txtEmail;
 
-    @FindBy(xpath = "//input[@id='input-password']")
+    @FindBy(name = "telephone")
+    WebElement txtTelephone;
+
+    @FindBy(name = "password")
     WebElement txtPassword;
 
-    @FindBy(xpath = "//input[@name='agree']")
+    @FindBy(name = "confirm")
+    WebElement txtConfirmPassword;
+
+    @FindBy(name = "agree")
     WebElement chkdPolicy;
 
-    @FindBy(xpath = "//button[@type='submit']")
-    WebElement btnSubmit;
+    @FindBy(xpath = "//input[@value='Continue']")
+    WebElement btnContinue;
 
     @FindBy(xpath = "//h1[normalize-space()='Your Account Has Been Created!']")
     WebElement msgConfirmation;
 
-    public void setTxtFirstname(String fname){
+
+    public void setFirstName(String fname) {
         txtFirstname.sendKeys(fname);
-    }
-    public void setLastName(String lname){
-        txtLastname.sendKeys(lname);
+
     }
 
-    public void setEmail(String email){
+    public void setLastName(String lname) {
+        txtLasttname.sendKeys(lname);
+
+    }
+
+    public void setEmail(String email) {
         txtEmail.sendKeys(email);
+
     }
 
-    public void setPassword(String pwd){
+    public void setTelephone(String tel) {
+        txtTelephone.sendKeys(tel);
+
+    }
+
+    public void setPassword(String pwd) {
         txtPassword.sendKeys(pwd);
+
     }
 
-    public void setPrivacyPolicy(){
+    public void setConfirmPassword(String pwd) {
+        txtConfirmPassword.sendKeys(pwd);
+
+    }
+
+    public void setPrivacyPolicy() {
 //        chkdPolicy.click();
+
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", chkdPolicy);
     }
 
+    public void clickContinue() {
+//        btnContinue.click();
 
-    public void clickSubmit(){
-//        btnSubmit.click();
+
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", btnSubmit);
+        js.executeScript("arguments[0].click();", btnContinue);
     }
 
-    public String getConfirmationMsg(){
-        try{
+    public String getConfirmationMsg() {
+        try {
             return (msgConfirmation.getText());
-        }catch (Exception e){
+        } catch (Exception e) {
             return (e.getMessage());
+
         }
+
     }
+
 }

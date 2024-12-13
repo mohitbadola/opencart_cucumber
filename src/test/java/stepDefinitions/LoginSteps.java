@@ -15,7 +15,6 @@ import pageObjects.HomePage;
 import pageObjects.LoginPage;
 import pageObjects.MyAccountPage;
 import utilities.DataReader;
-import utilities.DataReader;
 
 public class LoginSteps {
     WebDriver driver;
@@ -42,7 +41,7 @@ public class LoginSteps {
     public void user_enters_email_as_and_password_as(String email, String pwd) {
         BaseClass.getLogger().info("Entering email and password.. ");
 
-        lp=new LoginPage(BaseClass.getDriver());
+        lp= new LoginPage(BaseClass.getDriver());
         lp.setEmail(email);
         lp.setPassword(pwd);
     }
@@ -61,7 +60,7 @@ public class LoginSteps {
         macc=new MyAccountPage(BaseClass.getDriver());
         boolean targetpage=macc.isMyAccountPageExists();
 
-        Assert.assertEquals(targetpage, true);
+        Assert.assertTrue(targetpage);
 
     }
 
@@ -94,7 +93,7 @@ public class LoginSteps {
             System.out.println("target page: "+ targetpage);
             if(exp_res.equalsIgnoreCase("Valid"))
             {
-                if(targetpage==true)
+                if(targetpage)
                 {
                     MyAccountPage myaccpage=new MyAccountPage(BaseClass.getDriver());
                     myaccpage.clickLogout();
@@ -102,16 +101,16 @@ public class LoginSteps {
                 }
                 else
                 {
-                    Assert.assertTrue(false);
+                    Assert.fail();
                 }
             }
 
             if(exp_res.equalsIgnoreCase("Invalid"))
             {
-                if(targetpage==true)
+                if(targetpage)
                 {
                     macc.clickLogout();
-                    Assert.assertTrue(false);
+                    Assert.fail();
                 }
                 else
                 {
@@ -124,7 +123,7 @@ public class LoginSteps {
         catch(Exception e)
         {
 
-            Assert.assertTrue(false);
+            Assert.fail();
         }
     }
 

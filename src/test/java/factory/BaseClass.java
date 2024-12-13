@@ -23,7 +23,7 @@ public class BaseClass {
     static Properties p;
     static Logger logger;
 
-    public static WebDriver initilizeBrowser() throws IOException
+    public static WebDriver initializeBrowser() throws IOException
     {
         p = getProperties();
         String executionEnv = p.getProperty("execution_env");
